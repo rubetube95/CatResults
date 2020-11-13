@@ -15,31 +15,4 @@ with open(out_filename, "w") as outfile:
         with open(filename) as infile:
             for line in infile:
                 outfile.write('{},{}\n'.format(line.strip(), filename))
-
-
-                
-                # one below is broken - deletes one entry from each file - need to fix - one above works
-import os
-import glob
-
-want_header = True #headers is the original filename. E.g. test.txt, test2.txt, etc.
-out_filename = "concatResults.csv"
-
-if os.path.exists(out_filename):
-    os.remove(out_filename)
-
-read_files = glob.glob("*.data") #may have to use exact filetype e.g. *.data-nonbm
-
-with open(out_filename, "w") as outfile:
-    for filename in read_files:
-        with open(filename) as infile:
-            if want_header:
-                outfile.write('{},Filename\n'.format(next(infile).strip()))
-                want_header = False
-            else:
-                next(infile)
-            for line in infile:
-                outfile.write('{},{}\n'.format(line.strip(), filename))
-
-                
                 
